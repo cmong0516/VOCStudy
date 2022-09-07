@@ -1,27 +1,24 @@
 package TeamFresh.voc.entity;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 public class Penalty extends BaseEntity{
 
     @Id
     @GeneratedValue
     private Long id;
-    @OneToOne(mappedBy = "penalty")
+    @OneToOne(mappedBy = "penalty",fetch = FetchType.LAZY)
     private VOC voc;
-    private boolean deliveryCheck;
+    private boolean deliveryPenaltyCheck;
 
-    public void changeDeliveryCheck(boolean deliveryCheck) {
-        this.deliveryCheck = deliveryCheck;
+    public void setVOC(VOC voc) {
+        this.voc = voc;
     }
-
 }

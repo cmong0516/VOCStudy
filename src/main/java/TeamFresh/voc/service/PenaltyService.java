@@ -22,7 +22,7 @@ public class PenaltyService {
         return save.getId();
     }
 
-    public List<PenaltyDto> findPenaltys() {
+    public List<PenaltyDto> findAll() {
         return penaltyRepository.findAll().stream().map(PenaltyDto::new).collect(Collectors.toList());
     }
 }

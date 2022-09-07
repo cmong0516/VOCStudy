@@ -1,5 +1,6 @@
 package TeamFresh.voc.service;
 
+import TeamFresh.voc.dto.ReparationDto;
 import TeamFresh.voc.entity.Reparation;
 import TeamFresh.voc.repository.ReparationRepository;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -25,7 +27,7 @@ public class ReparationService {
         return reparationRepository.findById(reparationId);
     }
 
-    public List<Reparation> findAll() {
-        return reparationRepository.findAll();
+    public List<ReparationDto> findAll() {
+        return reparationRepository.findAll().stream().map(ReparationDto::new).collect(Collectors.toList());
     }
 }

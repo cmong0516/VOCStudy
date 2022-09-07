@@ -1,5 +1,6 @@
 package TeamFresh.voc.service;
 
+import TeamFresh.voc.dto.Negligence;
 import TeamFresh.voc.dto.VOCDto;
 import TeamFresh.voc.entity.Penalty;
 import TeamFresh.voc.entity.Reparation;
@@ -8,6 +9,8 @@ import TeamFresh.voc.repository.VOCRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.stream.Collectors;
 
