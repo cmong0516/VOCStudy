@@ -11,6 +11,7 @@ import TeamFresh.voc.service.ReparationService;
 import TeamFresh.voc.service.VOCService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -48,5 +49,6 @@ public class VOCController {
     public List<ReparationDto> reparations() {
         return reparationService.findAll();
     }
+
 
 }

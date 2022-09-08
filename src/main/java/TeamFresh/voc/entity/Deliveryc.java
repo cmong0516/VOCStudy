@@ -1,6 +1,7 @@
 package TeamFresh.voc.entity;
 
 
+import com.sun.istack.NotNull;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,8 @@ public class Deliveryc {
     @Id
     @GeneratedValue
     private Long id;
+    @NotNull
+    private String name;
 
     @OneToMany(mappedBy = "deliveryc")
     private List<Delivery> deliveryList = new ArrayList<>();
@@ -23,4 +26,7 @@ public class Deliveryc {
     @OneToMany(mappedBy = "deliveryc")
     private List<VOC> vocs = new ArrayList<>();
 
+    public Deliveryc(String name) {
+        this.name = name;
+    }
 }

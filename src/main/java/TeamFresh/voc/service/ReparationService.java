@@ -23,10 +23,6 @@ public class ReparationService {
         return save.getId();
     }
 
-    public Optional<Reparation> findById(Long reparationId) {
-        return reparationRepository.findById(reparationId);
-    }
-
     public List<ReparationDto> findAll() {
         return reparationRepository.findAll().stream().map(ReparationDto::new).collect(Collectors.toList());
     }
