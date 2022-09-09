@@ -10,10 +10,7 @@ import TeamFresh.voc.service.PenaltyService;
 import TeamFresh.voc.service.ReparationService;
 import TeamFresh.voc.service.VOCService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,11 +25,6 @@ public class VOCController {
     @PostMapping("/voc/add")
     public Long save(VOC voc) {
         return vocService.saveVOC(voc);
-    }
-
-    @PostMapping("/voc/update")
-    public VOC update(Long vocId, Penalty penalty, Reparation reparation) {
-        return vocService.updateVOC(vocId, penalty, reparation);
     }
 
     @GetMapping("/voc/all")
@@ -50,5 +42,24 @@ public class VOCController {
         return reparationService.findAll();
     }
 
+    @PutMapping("/voc/delivery-check/update")
+    public VOC updateDeliveryCheck(Long id,boolean deliveryCheck) {
+        return vocService.updateDeliveryCheck(id, deliveryCheck);
+    }
+
+    @PutMapping("/voc/objection/update")
+    public VOC updateObjection(Long id, boolean objection) {
+        return vocService.updateObjection(id, objection);
+    }
+
+    @PutMapping("/voc/penalty/update")
+    public VOC updatePenalty(Long id, Penalty penalty) {
+        return vocService.updatePenalty(id, penalty);
+    }
+
+    @PutMapping("/voc/reparation/update")
+    public VOC updateReparation(Long id,Reparation reparation) {
+        return vocService.updateReparation(id, reparation);
+    }
 
 }

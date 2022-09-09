@@ -15,7 +15,7 @@ import java.util.List;
 @Getter
 public class Deliveryc {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
     private String name;

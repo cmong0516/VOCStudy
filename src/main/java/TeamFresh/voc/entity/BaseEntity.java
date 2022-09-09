@@ -17,15 +17,8 @@ import java.time.LocalDateTime;
 @Getter
 public abstract class BaseEntity {
 
-    @CreatedBy
-    @Column(updatable = false)
-    private String createBy;
-
     @CreatedDate
     private LocalDateTime createDate;
-
-    @LastModifiedBy
-    private String lastModifiedBy;
 
     @LastModifiedDate
     private LocalDateTime lastModifiedDate;

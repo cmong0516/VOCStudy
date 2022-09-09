@@ -15,7 +15,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class VOC extends BaseEntity{
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
@@ -38,11 +38,18 @@ public class VOC extends BaseEntity{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "deliveryc_id")
+    @NotNull
     private Deliveryc deliveryc;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "delivery_id")
+    @NotNull
     private Delivery delivery;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "client_id")
+    @NotNull
+    private Client client;
 
     public VOC(Negligence negligence, String reason) {
         this.negligence = negligence;
@@ -57,14 +64,34 @@ public class VOC extends BaseEntity{
         this.reparation = reparation;
     }
 
-
     public void changeObjection(boolean objection) {
         this.objection  = objection;
+    }
+
+    public void changeDeliveryCheck(boolean deliveryCheck) {
+        this.deliveryCheck = deliveryCheck;
+    }
+
+    public void changeClient(Client client) {
+        this.client = client;
+    }
+
+    public void changeDelivery(Delivery delivery) {
+        this.delivery = delivery;
+    }
+
+    public void changeDeliveryc(Deliveryc deliveryc) {
+        this.deliveryc = deliveryc;
     }
 
     public void setPenalty(Penalty penalty) {
         this.penalty = penalty;
         penalty.setVOC(this);
+    }
+
+    public void setReparation(Reparation reparation) {
+        this.reparation = reparation;
+        reparation.setVOC(this);
     }
 
 }

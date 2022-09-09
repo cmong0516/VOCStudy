@@ -4,22 +4,23 @@ import com.sun.istack.NotNull;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Client {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
     private String name;
     private String manager;
     private String phone;
     private String email;
+
+    @OneToOne(mappedBy = "client",fetch = FetchType.LAZY)
+    private VOC voc;
 
     public Client(String name, String manager, String phone, String email) {
         this.name = name;

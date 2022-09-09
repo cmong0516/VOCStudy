@@ -22,6 +22,7 @@ public class InitDb {
     public void init() {
         initService.deliveryInit();
         initService.clientInit();
+        initService.vocInit();
     }
 
     @Component
@@ -67,6 +68,12 @@ public class InitDb {
             VOC voc2 = new VOC(Negligence.CLIENT, "제품 누락");
             VOC voc3 = new VOC(Negligence.CARRIER, "제품 파손");
             VOC voc4 = new VOC(Negligence.CLIENT, "잘못된 제품 배송");
+
+            em.persist(voc1);
+            em.persist(voc2);
+            em.persist(voc3);
+            em.persist(voc4);
+
         }
 
     }

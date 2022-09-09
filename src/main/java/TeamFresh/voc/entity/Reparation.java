@@ -5,10 +5,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -16,11 +13,15 @@ import javax.persistence.OneToOne;
 public class Reparation extends BaseEntity{
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
     private int price;
     @OneToOne(mappedBy = "reparation")
     private VOC voc;
+
+    public void setVOC(VOC voc) {
+        this.voc = voc;
+    }
 
 }

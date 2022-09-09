@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,12 +30,31 @@ public class VOCService {
     }
 
     @Transactional
-    public VOC updateVOC(Long vocId, Penalty penalty, Reparation reparation) {
-        VOC findVoc = vocRepository.findById(vocId).get();
-        findVoc.changePenalty(penalty);
-        findVoc.changeReparation(reparation);
+    public VOC updatePenalty(Long id,Penalty penalty) {
+        VOC findVOC = vocRepository.findById(id).get();
+        findVOC.changePenalty(penalty);
+        return findVOC;
+    }
 
-        return findVoc;
+    @Transactional
+    public VOC updateDeliveryCheck(Long id,boolean deliveryCheck) {
+        VOC findVOC = vocRepository.findById(id).get();
+        findVOC.changeDeliveryCheck(deliveryCheck);
+        return findVOC;
+    }
+
+    @Transactional
+    public VOC updateReparation(Long id,Reparation reparation) {
+        VOC findVOC = vocRepository.findById(id).get();
+        findVOC.changeReparation(reparation);
+        return findVOC;
+    }
+
+    @Transactional
+    public VOC updateObjection(Long id, boolean objection) {
+        VOC findVOC = vocRepository.findById(id).get();
+        findVOC.changeObjection(objection);
+        return findVOC;
     }
 
     public List<VOCDto> findVOCs() {

@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class Penalty extends BaseEntity{
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne(mappedBy = "penalty",fetch = FetchType.LAZY)
     private VOC voc;
@@ -21,4 +21,6 @@ public class Penalty extends BaseEntity{
     public void setVOC(VOC voc) {
         this.voc = voc;
     }
+
+
 }
