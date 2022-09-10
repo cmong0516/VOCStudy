@@ -1,6 +1,5 @@
 package TeamFresh.voc.service;
 
-import TeamFresh.voc.dto.Negligence;
 import TeamFresh.voc.dto.VOCDto;
 import TeamFresh.voc.entity.Penalty;
 import TeamFresh.voc.entity.Reparation;
@@ -10,9 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,9 +34,9 @@ public class VOCService {
     }
 
     @Transactional
-    public VOC updateDeliveryCheck(Long id,boolean deliveryCheck) {
+    public VOC updateDeliveryCheck(Long id) {
         VOC findVOC = vocRepository.findById(id).get();
-        findVOC.changeDeliveryCheck(deliveryCheck);
+        findVOC.changeDeliveryCheck(true);
         return findVOC;
     }
 
@@ -59,5 +56,10 @@ public class VOCService {
 
     public List<VOCDto> findVOCs() {
         return vocRepository.findAll().stream().map(VOCDto::new).collect(Collectors.toList());
+    }
+
+    public VOCDto findVOC(Long id) {
+        VOC findVOC = vocRepository.findById(id).get();
+        return new VOCDto(findVOC);
     }
 }

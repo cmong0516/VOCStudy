@@ -1,10 +1,7 @@
 package TeamFresh.voc;
 
 import TeamFresh.voc.dto.Negligence;
-import TeamFresh.voc.entity.Client;
-import TeamFresh.voc.entity.Delivery;
-import TeamFresh.voc.entity.Deliveryc;
-import TeamFresh.voc.entity.VOC;
+import TeamFresh.voc.entity.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,9 +17,7 @@ public class InitDb {
 
     @PostConstruct
     public void init() {
-        initService.deliveryInit();
-        initService.clientInit();
-        initService.vocInit();
+        initService.init();
     }
 
     @Component
@@ -32,7 +27,16 @@ public class InitDb {
 
         private final EntityManager em;
 
-        public void deliveryInit() {
+        public void init() {
+
+            Client client1 = new Client("Apple", "Kim", "010-1111-2222", "apple@gmail.com");
+            Client client2 = new Client("Samsung","Lee","010-2222-3333","samsung@naver.com");
+            Client client3 = new Client("Lg","Koo","010-3333-4444","lg@hanmail.com");
+
+            em.persist(client1);
+            em.persist(client2);
+            em.persist(client3);
+
             Deliveryc deliveryc1 = new Deliveryc("Amazone");
             Deliveryc deliveryc2 = new Deliveryc("Lozen");
             Deliveryc deliveryc3 = new Deliveryc("Hyundae");
@@ -51,28 +55,26 @@ public class InitDb {
             em.persist(delivery1);
             em.persist(delivery2);
             em.persist(delivery3);
-        }
 
-        public void clientInit() {
-            Client client1 = new Client("Apple", "Kim", "010-1111-2222", "apple@gmail.com");
-            Client client2 = new Client("Samsung","Lee","010-2222-3333","samsung@naver.com");
-            Client client3 = new Client("Lg","Koo","010-3333-4444","lg@hanmail.com");
+            VOC voc1 = new VOC(client1,Negligence.CARRIER,"배송 지연",delivery1);
+            VOC voc2 = new VOC(client1,Negligence.CLIENT, "제품 누락",delivery1);
+            VOC voc3 = new VOC(client2,Negligence.CARRIER, "제품 파손",delivery2);
+            VOC voc4 = new VOC(client3,Negligence.CLIENT, "잘못된 제품 배송",delivery3);
 
-            em.persist(client1);
-            em.persist(client2);
-            em.persist(client3);
-        }
+            Penalty penalty1 = new Penalty(true);
+            Penalty penalty2 = new Penalty(true);
 
-        public void vocInit() {
-            VOC voc1 = new VOC(Negligence.CARRIER,"배송 지연");
-            VOC voc2 = new VOC(Negligence.CLIENT, "제품 누락");
-            VOC voc3 = new VOC(Negligence.CARRIER, "제품 파손");
-            VOC voc4 = new VOC(Negligence.CLIENT, "잘못된 제품 배송");
+            voc1.changePenalty(penalty1);
+            voc2.changePenalty(penalty2);
+
+            em.persist(penalty1);
+            em.persist(penalty2);
 
             em.persist(voc1);
             em.persist(voc2);
             em.persist(voc3);
             em.persist(voc4);
+
 
         }
 

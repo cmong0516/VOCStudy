@@ -1,13 +1,16 @@
 package TeamFresh.voc.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sun.istack.NotNull;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 public class Client {
 
     @Id
@@ -20,6 +23,7 @@ public class Client {
     private String email;
 
     @OneToOne(mappedBy = "client",fetch = FetchType.LAZY)
+    @JsonBackReference
     private VOC voc;
 
     public Client(String name, String manager, String phone, String email) {

@@ -1,6 +1,7 @@
 package TeamFresh.voc.entity;
 
 import TeamFresh.voc.dto.Negligence;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -24,8 +25,9 @@ public class VOC extends BaseEntity{
     @NotNull
     private String reason;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "penalty_id")
+    @JsonManagedReference
     private Penalty penalty;
 
     private boolean deliveryCheck;
@@ -34,26 +36,26 @@ public class VOC extends BaseEntity{
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reparation_id")
+    @JsonManagedReference
     private Reparation reparation;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "deliveryc_id")
-    @NotNull
-    private Deliveryc deliveryc;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "delivery_id")
     @NotNull
+    @JsonManagedReference
     private Delivery delivery;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id")
     @NotNull
+    @JsonManagedReference
     private Client client;
 
-    public VOC(Negligence negligence, String reason) {
+    public VOC(Client client,Negligence negligence, String reason,Delivery delivery) {
+        this.client = client;
         this.negligence = negligence;
         this.reason = reason;
+        this.delivery = delivery;
     }
 
     public void changePenalty(Penalty penalty) {
@@ -78,10 +80,6 @@ public class VOC extends BaseEntity{
 
     public void changeDelivery(Delivery delivery) {
         this.delivery = delivery;
-    }
-
-    public void changeDeliveryc(Deliveryc deliveryc) {
-        this.deliveryc = deliveryc;
     }
 
     public void setPenalty(Penalty penalty) {

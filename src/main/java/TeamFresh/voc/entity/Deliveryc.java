@@ -1,6 +1,8 @@
 package TeamFresh.voc.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -21,10 +23,9 @@ public class Deliveryc {
     private String name;
 
     @OneToMany(mappedBy = "deliveryc")
+    @JsonManagedReference
     private List<Delivery> deliveryList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "deliveryc")
-    private List<VOC> vocs = new ArrayList<>();
 
     public Deliveryc(String name) {
         this.name = name;

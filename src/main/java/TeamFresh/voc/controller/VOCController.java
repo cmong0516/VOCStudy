@@ -9,13 +9,17 @@ import TeamFresh.voc.entity.VOC;
 import TeamFresh.voc.service.PenaltyService;
 import TeamFresh.voc.service.ReparationService;
 import TeamFresh.voc.service.VOCService;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@Slf4j
 public class VOCController {
 
     private final VOCService vocService;
@@ -28,38 +32,36 @@ public class VOCController {
     }
 
     @GetMapping("/voc/all")
-    public List<VOCDto> vocs() {
-        return vocService.findVOCs();
+    public Result vocs() {
+        List<VOCDto> result = vocService.findVOCs();
+        return new Result(result.size(), result);
+    }
+
+    @GetMapping("/voc/{id}")
+    public VOCDto findVOC(@PathVariable Long id) {
+        return vocService.findVOC(id);
     }
 
     @GetMapping("/voc/penalty/all")
     public List<PenaltyDto> penaltys() {
         return penaltyService.findAll();
+
     }
 
     @GetMapping("/voc/reparation/all")
     public List<ReparationDto> reparations() {
         return reparationService.findAll();
+
     }
 
-    @PutMapping("/voc/delivery-check/update")
-    public VOC updateDeliveryCheck(Long id,boolean deliveryCheck) {
-        return vocService.updateDeliveryCheck(id, deliveryCheck);
-    }
 
-    @PutMapping("/voc/objection/update")
-    public VOC updateObjection(Long id, boolean objection) {
-        return vocService.updateObjection(id, objection);
-    }
+    @Data
+    @AllArgsConstructor
+    public static class Result<T>{
+        private int count;
+        private T data;
 
-    @PutMapping("/voc/penalty/update")
-    public VOC updatePenalty(Long id, Penalty penalty) {
-        return vocService.updatePenalty(id, penalty);
+        public Result() {
+        }
     }
-
-    @PutMapping("/voc/reparation/update")
-    public VOC updateReparation(Long id,Reparation reparation) {
-        return vocService.updateReparation(id, reparation);
-    }
-
 }

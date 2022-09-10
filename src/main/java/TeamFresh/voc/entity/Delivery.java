@@ -1,5 +1,6 @@
 package TeamFresh.voc.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sun.istack.NotNull;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -25,9 +26,11 @@ public class Delivery{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "deliveryc_id")
+    @JsonBackReference
     private Deliveryc deliveryc;
 
     @OneToMany(mappedBy = "delivery")
+    @JsonBackReference
     private List<VOC> vocs = new ArrayList<>();
 
     public Delivery(String name, int age) {
