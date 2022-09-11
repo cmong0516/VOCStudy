@@ -1,12 +1,10 @@
 package TeamFresh.voc.entity;
 
 import TeamFresh.voc.dto.Negligence;
+import TeamFresh.voc.request.VOCRequest;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -41,21 +39,25 @@ public class VOC extends BaseEntity{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "delivery_id")
-    @NotNull
     @JsonManagedReference
     private Delivery delivery;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id")
     @NotNull
     @JsonManagedReference
     private Client client;
 
-    public VOC(Client client,Negligence negligence, String reason,Delivery delivery) {
+    public VOC(Client client, Negligence negligence, String reason, Delivery delivery) {
         this.client = client;
         this.negligence = negligence;
         this.reason = reason;
         this.delivery = delivery;
+    }
+
+    public VOC(VOCRequest vocRequest) {
+        this.negligence = Negligence.valueOf(vocRequest.getNegligence());
+        this.reason = vocRequest.getReason();
     }
 
     public void changePenalty(Penalty penalty) {

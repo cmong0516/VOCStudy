@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -22,9 +24,9 @@ public class Client {
     private String phone;
     private String email;
 
-    @OneToOne(mappedBy = "client",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
     @JsonBackReference
-    private VOC voc;
+    private List<VOC> vocs = new ArrayList<>();
 
     public Client(String name, String manager, String phone, String email) {
         this.name = name;

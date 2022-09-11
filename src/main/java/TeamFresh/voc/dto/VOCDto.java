@@ -12,7 +12,7 @@ import lombok.Getter;
 @Data
 public class VOCDto {
     @NotNull
-    private Negligence negligence;
+    private Enum<Negligence> negligence;
     @NotNull
     private String reason;
     private Penalty penalty;

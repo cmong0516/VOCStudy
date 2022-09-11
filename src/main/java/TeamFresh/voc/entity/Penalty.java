@@ -27,4 +27,6 @@ public class Penalty extends BaseEntity{
     public Penalty(boolean deliveryPenaltyCheck) {
         this.deliveryPenaltyCheck = deliveryPenaltyCheck;
     }
+
+
 }
