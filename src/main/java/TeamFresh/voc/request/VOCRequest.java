@@ -19,5 +19,7 @@ public class VOCRequest {
     private Long deliveryId;
     @JsonProperty("clientId")
     private Long clientId;
+    private int price;
+    private boolean objection;
 
 }

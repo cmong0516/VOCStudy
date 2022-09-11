@@ -17,12 +17,13 @@ public class PenaltyService {
     private final PenaltyRepository penaltyRepository;
 
     @Transactional
-    public Long savePenalty(Penalty penalty) {
-        Penalty save = penaltyRepository.save(penalty);
-        return save.getId();
+    public Penalty savePenalty(Penalty penalty) {
+        return penaltyRepository.save(penalty);
+
     }
 
     public List<PenaltyDto> findAll() {
-        return penaltyRepository.findAll().stream().map(PenaltyDto::new).collect(Collectors.toList());
+        List<Penalty> all = penaltyRepository.findAll();
+        return all.stream().map(PenaltyDto::new).collect(Collectors.toList());
     }
 }

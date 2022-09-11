@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -18,9 +17,8 @@ public class ReparationService {
     private final ReparationRepository reparationRepository;
 
     @Transactional
-    public Long saveReparation(Reparation reparation) {
-        Reparation save = reparationRepository.save(reparation);
-        return save.getId();
+    public Reparation saveReparation(Reparation reparation) {
+        return reparationRepository.save(reparation);
     }
 
     public List<ReparationDto> findAll() {

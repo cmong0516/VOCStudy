@@ -15,18 +15,22 @@ public class Penalty extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne(mappedBy = "penalty",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+
+    @OneToOne(mappedBy = "penalty")
     @JsonBackReference
     private VOC voc;
+
     private boolean deliveryPenaltyCheck;
+    private int price;
+
+
+    public Penalty(boolean deliveryPenaltyCheck,int price) {
+        this.deliveryPenaltyCheck = deliveryPenaltyCheck;
+        this.price = price;
+    }
+
 
     public void setVOC(VOC voc) {
         this.voc = voc;
     }
-
-    public Penalty(boolean deliveryPenaltyCheck) {
-        this.deliveryPenaltyCheck = deliveryPenaltyCheck;
-    }
-
-
 }

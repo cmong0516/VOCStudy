@@ -10,6 +10,7 @@ import lombok.Data;
 import lombok.Getter;
 
 @Data
+@AllArgsConstructor
 public class VOCDto {
     @NotNull
     private Enum<Negligence> negligence;

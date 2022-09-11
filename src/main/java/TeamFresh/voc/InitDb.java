@@ -56,24 +56,6 @@ public class InitDb {
             em.persist(delivery2);
             em.persist(delivery3);
 
-            VOC voc1 = new VOC(client1,Negligence.Carrier,"배송 지연",delivery1);
-            VOC voc2 = new VOC(client1,Negligence.Client, "제품 누락",delivery1);
-            VOC voc3 = new VOC(client2,Negligence.Carrier, "제품 파손",delivery2);
-            VOC voc4 = new VOC(client3,Negligence.Client, "잘못된 제품 배송",delivery3);
-
-            Penalty penalty1 = new Penalty(true);
-            Penalty penalty2 = new Penalty(true);
-
-            voc1.changePenalty(penalty1);
-            voc2.changePenalty(penalty2);
-
-            em.persist(penalty1);
-            em.persist(penalty2);
-
-            em.persist(voc1);
-            em.persist(voc2);
-            em.persist(voc3);
-            em.persist(voc4);
 
 
         }

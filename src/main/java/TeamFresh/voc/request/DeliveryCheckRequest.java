@@ -9,6 +9,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Getter
 public class DeliveryCheckRequest {
-    private Long id;
     private boolean deliveryCheck;
 }

@@ -23,7 +23,7 @@ public class VOC extends BaseEntity{
     @NotNull
     private String reason;
 
-    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "penalty_id")
     @JsonManagedReference
     private Penalty penalty;
@@ -58,14 +58,17 @@ public class VOC extends BaseEntity{
     public VOC(VOCRequest vocRequest) {
         this.negligence = Negligence.valueOf(vocRequest.getNegligence());
         this.reason = vocRequest.getReason();
+        this.objection = vocRequest.isObjection();
     }
 
     public void changePenalty(Penalty penalty) {
         this.penalty = penalty;
+        penalty.setVOC(this);
     }
 
     public void changeReparation(Reparation reparation) {
         this.reparation = reparation;
+        reparation.setVOC(this);
     }
 
     public void changeObjection(boolean objection) {
