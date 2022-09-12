@@ -4,7 +4,7 @@
 <h1>1. 모든 VOC 조회</h1>
 localhost:8080/voc/all
 
-<h1>1. voc 등록</h1>
+<h1>2. voc 등록</h1>
 localhost:8080/voc/add
 
 Request
@@ -18,7 +18,7 @@ Request
 
 Response VOC_id
 
-2. Penalty 등록
+<h1>3. Penalty 등록</h1>
 localhost:8080/voc/penalty/add/{id}
 
 Request
@@ -28,7 +28,7 @@ Request
 
 Response VOCDto
 
-3. 배송 기사의 패널티 확인 여부 등록
+<h1>4. 배송 기사의 패널티 확인 여부 등록</h1>
 
 localhost:8080/voc/penalty/delivery-check/{id}
 
@@ -40,7 +40,7 @@ Request VOCDto
 
 Response VOCDto
 
-4. 배상 정보 등록
+<h1>5. 배상 정보 등록</h1>
 
 localhost:8080/voc/reparation/add/{id}
 
