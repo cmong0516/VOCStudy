@@ -28,7 +28,6 @@ public class VOC extends BaseEntity{
     @JsonManagedReference
     private Penalty penalty;
 
-    private boolean deliveryCheck;
 
     private boolean objection;
 
@@ -74,9 +73,6 @@ public class VOC extends BaseEntity{
         this.objection = objection;
     }
 
-    public void changeDeliveryCheck(boolean deliveryCheck) {
-        this.deliveryCheck = deliveryCheck;
-    }
 
     public void changeClient(Client client) {
         this.client = client;

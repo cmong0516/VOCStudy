@@ -34,12 +34,6 @@ public class VOCService {
         return findVOC;
     }
 
-    @Transactional
-    public VOC updateDeliveryCheck(Long id) {
-        VOC findVOC = vocRepository.findById(id).get();
-        findVOC.changeDeliveryCheck(true);
-        return findVOC;
-    }
 
     @Transactional
     public VOC updateReparation(Long id,Reparation reparation) {

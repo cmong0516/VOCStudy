@@ -55,10 +55,9 @@ public class VOCController {
     @PutMapping("/voc/penalty/delivery-check/{id}")
     public VOCDto deliveryCheck(@PathVariable Long id, @RequestBody @Valid DeliveryCheckRequest deliveryCheckRequest) {
         VOC voc = vocRepository.findById(id).get();
-        voc.changeDeliveryCheck(deliveryCheckRequest.isDeliveryCheck());
+        voc.getPenalty().changeDeliveryPenaltyCheck(true);
         if (deliveryCheckRequest.isObjection()) {
             voc.changeObjection(deliveryCheckRequest.isObjection());
-            voc.getPenalty().changeDeliveryPenaltyCheck(deliveryCheckRequest.isDeliveryCheck());
             vocService.saveVOC(voc);
         }
         if (!deliveryCheckRequest.isObjection()) {

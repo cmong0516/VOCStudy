@@ -14,11 +14,11 @@ public class VOCDto {
     @NotNull
     private String reason;
     private Penalty penalty;
-    private boolean deliverCheck;
     private boolean objection;
     private Reparation reparation;
     private Client client;
     private Delivery delivery;
+
 
     public VOCDto(VOC voc) {
         this.negligence = voc.getNegligence();
