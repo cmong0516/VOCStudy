@@ -9,10 +9,10 @@ localhost:8080/voc/add
 
 Request
 {
-    "negligence" : "Client" or "Carrier"
-    "reason" : String
-    "deliveryId" : int
-    "clientId" : int
+    "negligence" : "Client" or "Carrier",
+    "reason" : String,
+    "deliveryId" : int,
+    "clientId" : int,
     "price" : int
 }
 
