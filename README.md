@@ -62,3 +62,11 @@ localhost:8080/voc/penalty/all
 <h1>7. 모든 배상정보 조회</h1>
 GET
 localhost:8080/voc/reparation/all
+
+
+TodoList
+1. 배상 금액을 클레임 온 금액 그대로 할것인가 따로 할것인가
+2. 고객사 , 운송사 , 배송기사 CRUD
+3. VOC 업데이트 관련 처리
+4. 쿼리 최적화(Query Dsl 세팅만 완료)
+5. 테스트 코드 작성을 하지 못함.
