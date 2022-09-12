@@ -1,6 +1,5 @@
 package TeamFresh.voc.request;
 
-import TeamFresh.voc.entity.Penalty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,5 +7,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PenaltyRequest {
     private Long id;
-    private Penalty penalty;
+    private int price;
 }

@@ -1,9 +1,6 @@
 package TeamFresh.voc.dto;
 
-import TeamFresh.voc.entity.Client;
-import TeamFresh.voc.entity.Penalty;
-import TeamFresh.voc.entity.Reparation;
-import TeamFresh.voc.entity.VOC;
+import TeamFresh.voc.entity.*;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,6 +18,7 @@ public class VOCDto {
     private boolean objection;
     private Reparation reparation;
     private Client client;
+    private Delivery delivery;
 
     public VOCDto(VOC voc) {
         this.negligence = voc.getNegligence();
@@ -28,6 +26,8 @@ public class VOCDto {
         this.penalty = voc.getPenalty();
         this.reparation = voc.getReparation();
         this.client = voc.getClient();
+        this.objection = voc.isObjection();
+        this.delivery = voc.getDelivery();
     }
 
     @Getter

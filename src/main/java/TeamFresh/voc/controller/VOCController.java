@@ -10,6 +10,7 @@ import TeamFresh.voc.repository.DeliveryRepository;
 import TeamFresh.voc.repository.VOCRepository;
 import TeamFresh.voc.request.DeliveryCheckRequest;
 import TeamFresh.voc.request.PenaltyRequest;
+import TeamFresh.voc.request.ReparationRequest;
 import TeamFresh.voc.request.VOCRequest;
 import TeamFresh.voc.service.PenaltyService;
 import TeamFresh.voc.service.ReparationService;
@@ -43,7 +44,7 @@ public class VOCController {
         Client client = clientRepository.findById(vocRequest.getClientId()).get();
         voc.changeClient(client);
 
-        if (vocRequest.isObjection() &&voc.getNegligence() == Negligence.Carrier) {
+        if (voc.getNegligence() == Negligence.Carrier) {
             Reparation reparation = reparationService.saveReparation(new Reparation(vocRequest.getPrice()));
             voc.changeReparation(reparation);
         }
@@ -55,9 +56,13 @@ public class VOCController {
     public VOCDto deliveryCheck(@PathVariable Long id, @RequestBody @Valid DeliveryCheckRequest deliveryCheckRequest) {
         VOC voc = vocRepository.findById(id).get();
         voc.changeDeliveryCheck(deliveryCheckRequest.isDeliveryCheck());
-        if (deliveryCheckRequest.isDeliveryCheck()) {
-            Penalty penalty = penaltyService.savePenalty(new Penalty(deliveryCheckRequest.isDeliveryCheck(), voc.getReparation().getPrice()));
-            voc.changePenalty(penalty);
+        if (deliveryCheckRequest.isObjection()) {
+            voc.changeObjection(deliveryCheckRequest.isObjection());
+            voc.getPenalty().changeDeliveryPenaltyCheck(deliveryCheckRequest.isDeliveryCheck());
+            vocService.saveVOC(voc);
+        }
+        if (!deliveryCheckRequest.isObjection()) {
+            voc.changeObjection(deliveryCheckRequest.isObjection());
             vocService.saveVOC(voc);
         }
         return new VOCDto(voc);
@@ -86,10 +91,21 @@ public class VOCController {
         return new Result(result.size(), result);
     }
 
-    @PostMapping(value = "/voc/penalty/add")
-    public VOC addPenalty(@RequestBody PenaltyRequest penaltyRequest) {
-        return vocService.updatePenalty(penaltyRequest.getId(), penaltyRequest.getPenalty());
+    @PostMapping(value = "/voc/penalty/add/{id}")
+    public VOC addPenalty(@PathVariable Long id,@RequestBody PenaltyRequest penaltyRequest) {
+        Penalty penalty = new Penalty(penaltyRequest.getPrice());
+        penaltyService.savePenalty(penalty);
+        return vocService.updatePenalty(id, penalty);
     }
+
+    @PostMapping(value = "/voc/reparation/add/{id}")
+    public VOC addReparation(@PathVariable Long id, @RequestBody ReparationRequest reparationRequest) {
+        Reparation reparation = new Reparation(reparationRequest.getPrice());
+        reparationService.saveReparation(reparation);
+        return vocService.updateReparation(id, reparation);
+    }
+
+
 
     @Data
     @AllArgsConstructor

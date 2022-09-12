@@ -29,6 +29,7 @@ public class VOCService {
     @Transactional
     public VOC updatePenalty(Long id,Penalty penalty) {
         VOC findVOC = vocRepository.findById(id).get();
+        penalty.changeDelivery(findVOC.getDelivery());
         findVOC.changePenalty(penalty);
         return findVOC;
     }

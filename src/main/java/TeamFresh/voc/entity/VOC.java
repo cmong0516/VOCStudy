@@ -58,7 +58,6 @@ public class VOC extends BaseEntity{
     public VOC(VOCRequest vocRequest) {
         this.negligence = Negligence.valueOf(vocRequest.getNegligence());
         this.reason = vocRequest.getReason();
-        this.objection = vocRequest.isObjection();
     }
 
     public void changePenalty(Penalty penalty) {
@@ -72,7 +71,7 @@ public class VOC extends BaseEntity{
     }
 
     public void changeObjection(boolean objection) {
-        this.objection  = objection;
+        this.objection = objection;
     }
 
     public void changeDeliveryCheck(boolean deliveryCheck) {

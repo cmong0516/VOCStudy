@@ -3,7 +3,6 @@ package TeamFresh.voc.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sun.istack.NotNull;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -33,6 +32,10 @@ public class Delivery{
     @JsonBackReference
     private List<VOC> vocs = new ArrayList<>();
 
+    @OneToMany(mappedBy = "delivery")
+    @JsonBackReference
+    private List<Penalty> penaltyList = new ArrayList<>();
+
     public Delivery(String name, int age) {
         this.name = name;
         this.age = age;
@@ -40,5 +43,6 @@ public class Delivery{
 
     public void changeDeliveryc(Deliveryc deliveryc) {
         this.deliveryc = deliveryc;
+
     }
 }
