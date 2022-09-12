@@ -2,9 +2,11 @@
 ![voc](https://user-images.githubusercontent.com/74821906/189686547-29f2a492-5900-48ec-8043-ae4fa534436d.png)
 
 <h1>1. 모든 VOC 조회</h1>
+GET
 localhost:8080/voc/all
 
 <h1>2. voc 등록</h1>
+POST
 localhost:8080/voc/add
 
 Request
@@ -19,6 +21,7 @@ Request
 Response VOC_id
 
 <h1>3. Penalty 등록</h1>
+POST
 localhost:8080/voc/penalty/add/{id}
 
 Request
@@ -29,7 +32,7 @@ Request
 Response VOCDto
 
 <h1>4. 배송 기사의 패널티 확인 여부 등록</h1>
-
+PUT
 localhost:8080/voc/penalty/delivery-check/{id}
 
 Request VOCDto
@@ -51,3 +54,11 @@ Request
 }
 
 Response VOCDto
+
+<h1>6. 모든 Penalty 조회</h1>
+GET
+localhost:8080/voc/penalty/all
+
+<h1>7. 모든 배상정보 조회</h1>
+GET
+localhost:8080/voc/reparation/all
