@@ -3,11 +3,9 @@
 
 ![vocERD](https://user-images.githubusercontent.com/74821906/189692981-b92e953c-2ec9-4f7b-97f6-99c6c1344495.png)
 
-<h1>1. 모든 VOC 조회</h1>
-GET
-localhost:8080/voc/all
 
-<h1>2. voc 등록</h1>
+
+<h1>1. VOC 등록</h1>
 POST
 localhost:8080/voc/add
 
@@ -21,6 +19,17 @@ Request
 }
 
 Response VOC_id
+
+<h1>2. 모든 VOC 조회</h1>
+GET
+localhost:8080/voc/all
+
+
+Response
+public static class Result<T>{
+        private int count;
+        private T data;
+    }
 
 <h1>3. Penalty 등록</h1>
 POST
