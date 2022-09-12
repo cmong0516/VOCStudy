@@ -1,6 +1,8 @@
 # VOCStudy
 ![voc](https://user-images.githubusercontent.com/74821906/189686547-29f2a492-5900-48ec-8043-ae4fa534436d.png)
 
+![vocERD](https://user-images.githubusercontent.com/74821906/189692981-b92e953c-2ec9-4f7b-97f6-99c6c1344495.png)
+
 <h1>1. 모든 VOC 조회</h1>
 GET
 localhost:8080/voc/all
