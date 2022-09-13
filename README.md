@@ -75,10 +75,9 @@ GET
 localhost:8080/voc/reparation/all
 
 
-<h1>TodoList</h1>
-1. 배상 금액을 클레임 온 금액 그대로 할것인가 따로 할것인가
-2. 고객사 , 운송사 , 배송기사 CRUD
-3. VOC 업데이트 관련 처리
-4. 쿼리 최적화(Query Dsl 세팅만 완료)
-5. 테스트 코드 작성을 하지 못함.
-6. 코드 리팩토링
+<h1>FIX</h1>
+
+VOCDto 에 Penalty , Reparation , Client, Deliver 를 Entity 로 담았더니
+No serializer found for class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor and no properties discovered to create BeanSerializer
+에러발생
+Entity -> DTO 
