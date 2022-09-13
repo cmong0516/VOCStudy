@@ -4,8 +4,6 @@ import TeamFresh.voc.entity.*;
 import com.sun.istack.NotNull;
 import lombok.*;
 
-
-
 @Data
 @AllArgsConstructor
 

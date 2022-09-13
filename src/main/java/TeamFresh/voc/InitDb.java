@@ -40,10 +40,12 @@ public class InitDb {
             Deliveryc deliveryc1 = new Deliveryc("Amazone");
             Deliveryc deliveryc2 = new Deliveryc("Lozen");
             Deliveryc deliveryc3 = new Deliveryc("Hyundae");
+//            cascade = CascadeType.ALL 로 Delivery 가 저장될때 함께 저장.
+//            delivery 가 없는 deliveryc3 는 저장되지 않음.
+//            em.persist(deliveryc1);
+//            em.persist(deliveryc2);
+//            em.persist(deliveryc3);
 
-            em.persist(deliveryc1);
-            em.persist(deliveryc2);
-            em.persist(deliveryc3);
 
             Delivery delivery1 = new Delivery("Sam", 30);
             delivery1.changeDeliveryc(deliveryc1);

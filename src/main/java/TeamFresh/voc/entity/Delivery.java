@@ -25,7 +25,7 @@ public class Delivery{
     @NotNull
     private int age;
     // 배송기사 소속 운송사
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "deliveryc_id")
     @JsonBackReference
     private Deliveryc deliveryc;

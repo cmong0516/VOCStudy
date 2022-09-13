@@ -5,6 +5,7 @@ import TeamFresh.voc.entity.Penalty;
 import TeamFresh.voc.entity.Reparation;
 import TeamFresh.voc.entity.VOC;
 import TeamFresh.voc.repository.VOCRepository;
+import TeamFresh.voc.repository.VOCRepositoryCustomImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 public class VOCService {
 
     private final VOCRepository vocRepository;
+    private final VOCRepositoryCustomImpl vocRepositoryCustom;
 
     @Transactional
     public Long saveVOC(VOC voc) {
@@ -29,11 +31,9 @@ public class VOCService {
 
     @Transactional
     public VOCDto updatePenalty(Long id, Penalty penalty) {
-        log.error("=============VOCService==================");
         VOC findVOC = vocRepository.findById(id).get();
         penalty.changeDelivery(findVOC.getDelivery());
         findVOC.changePenalty(penalty);
-        log.error(String.valueOf(findVOC.getPenalty().getPrice()));
         return new VOCDto(findVOC);
     }
 
@@ -53,7 +53,8 @@ public class VOCService {
     }
 
     public List<VOCDto> findVOCs() {
-        return vocRepository.findAll().stream().map(VOCDto::new).collect(Collectors.toList());
+//        return vocRepository.findAll().stream().map(VOCDto::new).collect(Collectors.toList());
+        return vocRepositoryCustom.findAllFetchJoin().stream().map(VOCDto::new).collect(Collectors.toList());
     }
 
     public VOCDto findVOC(Long id) {

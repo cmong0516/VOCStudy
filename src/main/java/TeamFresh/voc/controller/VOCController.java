@@ -91,7 +91,6 @@ public class VOCController {
     public VOCDto addPenalty(@PathVariable Long id, @RequestBody PenaltyRequest penaltyRequest) {
         Penalty penalty = new Penalty(penaltyRequest.getPrice());
         penaltyService.savePenalty(penalty);
-        log.error("=============VOCController==================");
         return vocService.updatePenalty(id, penalty);
     }
 

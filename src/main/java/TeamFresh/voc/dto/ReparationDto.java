@@ -7,7 +7,6 @@ import lombok.ToString;
 
 @Data
 @NoArgsConstructor
-@ToString(of={"price"})
 public class ReparationDto {
     // 배상 금액
     private int price;
