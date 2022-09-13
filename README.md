@@ -5,23 +5,23 @@
 
 <h1>Init DB</h1>
 
-Client
-Client client1 = new Client("Apple", "Kim", "010-1111-2222", "apple@gmail.com");
-Client client2 = new Client("Samsung","Lee","010-2222-3333","samsung@naver.com");
-Client client3 = new Client("Lg","Koo","010-3333-4444","lg@hanmail.com");
+Client<br>
+Client client1 = new Client("Apple", "Kim", "010-1111-2222", "apple@gmail.com");<br>
+Client client2 = new Client("Samsung","Lee","010-2222-3333","samsung@naver.com");<br>
+Client client3 = new Client("Lg","Koo","010-3333-4444","lg@hanmail.com");<br>
 
-Deliveryc
-Deliveryc deliveryc1 = new Deliveryc("Amazone");
-Deliveryc deliveryc2 = new Deliveryc("Lozen");
-Deliveryc deliveryc3 = new Deliveryc("Hyundae");
+Deliveryc<br>
+Deliveryc deliveryc1 = new Deliveryc("Amazone");<br>
+Deliveryc deliveryc2 = new Deliveryc("Lozen");<br>
+Deliveryc deliveryc3 = new Deliveryc("Hyundae");<br>
 
-Delivery
-Delivery delivery1 = new Delivery("Sam", 30);
-delivery1.changeDeliveryc(deliveryc1);
-Delivery delivery2 = new Delivery("James", 40);
-delivery2.changeDeliveryc(deliveryc1);
-Delivery delivery3 = new Delivery("Luka", 32);
-delivery3.changeDeliveryc(deliveryc2);
+Delivery<br>
+Delivery delivery1 = new Delivery("Sam", 30);<br>
+delivery1.changeDeliveryc(deliveryc1);<br>
+Delivery delivery2 = new Delivery("James", 40);<br>
+delivery2.changeDeliveryc(deliveryc1);<br>
+Delivery delivery3 = new Delivery("Luka", 32);<br>
+delivery3.changeDeliveryc(deliveryc2);<br>
 
 <h1>1. VOC 등록</h1>
 POST
