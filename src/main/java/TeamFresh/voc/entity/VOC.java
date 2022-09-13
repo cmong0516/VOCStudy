@@ -16,31 +16,30 @@ public class VOC extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    // 귀책 당사자
     @NotNull
     private Negligence negligence;
-
+    // 귀책 사유
     @NotNull
     private String reason;
-
+    // 발급된 패널티
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "penalty_id")
     @JsonManagedReference
     private Penalty penalty;
-
-
+    // 이의제기 여부
     private boolean objection;
-
+    // 발급된 배상정보
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reparation_id")
     @JsonManagedReference
     private Reparation reparation;
-
+    // 배송기사 정보
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "delivery_id")
     @JsonManagedReference
     private Delivery delivery;
-
+    // 고객사 정보
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id")
     @NotNull

@@ -15,8 +15,9 @@ public class Reparation extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    // 배상 금액
     private int price;
-
+    // 배상해야할 VOC 정보
     @OneToOne(mappedBy = "reparation")
     @JsonBackReference
     private VOC voc;

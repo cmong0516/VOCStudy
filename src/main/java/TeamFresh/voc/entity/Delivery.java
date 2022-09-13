@@ -18,20 +18,22 @@ public class Delivery{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    // 배송기사 이름
     @NotNull
     private String name;
+    // 배송기사 나이
     @NotNull
     private int age;
-
+    // 배송기사 소속 운송사
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "deliveryc_id")
     @JsonBackReference
     private Deliveryc deliveryc;
-
+    // 배송한 VOC List
     @OneToMany(mappedBy = "delivery")
     @JsonBackReference
     private List<VOC> vocs = new ArrayList<>();
-
+    // 발급한 Penalty List
     @OneToMany(mappedBy = "delivery")
     @JsonBackReference
     private List<Penalty> penaltyList = new ArrayList<>();

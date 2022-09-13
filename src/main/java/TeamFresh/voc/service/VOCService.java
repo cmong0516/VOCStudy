@@ -5,10 +5,12 @@ import TeamFresh.voc.entity.Penalty;
 import TeamFresh.voc.entity.Reparation;
 import TeamFresh.voc.entity.VOC;
 import TeamFresh.voc.repository.VOCRepository;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,7 +20,6 @@ import java.util.stream.Collectors;
 public class VOCService {
 
     private final VOCRepository vocRepository;
-
 
     @Transactional
     public Long saveVOC(VOC voc) {

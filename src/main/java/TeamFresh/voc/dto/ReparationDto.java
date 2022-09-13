@@ -1,19 +1,21 @@
 package TeamFresh.voc.dto;
 
 import TeamFresh.voc.entity.Reparation;
-import TeamFresh.voc.entity.VOC;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor
+@ToString(of={"price"})
 public class ReparationDto {
-
+    // 배상 금액
     private int price;
-    private VOC voc;
+    // 해당 VOC
+    private VOCDto vocDto;
 
     public ReparationDto(Reparation reparation) {
         this.price = reparation.getPrice();
-        this.voc = reparation.getVoc();
+        this.vocDto = new VOCDto(reparation.getVoc());
     }
 }

@@ -1,5 +1,6 @@
 package TeamFresh.voc.entity;
 
+import TeamFresh.voc.request.ClientRequest;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sun.istack.NotNull;
 import lombok.AccessLevel;
@@ -18,9 +19,12 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    // 고객사 이름
     @NotNull
     private String name;
+    // 고객사 담당자
     private String manager;
+    // 고객사 담당자 연락처
     private String phone;
     private String email;
 
@@ -33,5 +37,12 @@ public class Client {
         this.manager = manager;
         this.phone = phone;
         this.email = email;
+    }
+
+    public Client(ClientRequest clientRequest) {
+        this.name = clientRequest.getName();
+        this.manager = clientRequest.getManager();
+        this.email = clientRequest.getEmail();
+        this.phone = clientRequest.getPhone();
     }
 }

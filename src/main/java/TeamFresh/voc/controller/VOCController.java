@@ -8,10 +8,7 @@ import TeamFresh.voc.entity.*;
 import TeamFresh.voc.repository.ClientRepository;
 import TeamFresh.voc.repository.DeliveryRepository;
 import TeamFresh.voc.repository.VOCRepository;
-import TeamFresh.voc.request.DeliveryCheckRequest;
-import TeamFresh.voc.request.PenaltyRequest;
-import TeamFresh.voc.request.ReparationRequest;
-import TeamFresh.voc.request.VOCRequest;
+import TeamFresh.voc.request.*;
 import TeamFresh.voc.service.PenaltyService;
 import TeamFresh.voc.service.ReparationService;
 import TeamFresh.voc.service.VOCService;
@@ -91,24 +88,23 @@ public class VOCController {
     }
 
     @PostMapping(value = "/voc/penalty/add/{id}")
-    public VOC addPenalty(@PathVariable Long id,@RequestBody PenaltyRequest penaltyRequest) {
+    public VOCDto addPenalty(@PathVariable Long id, @RequestBody PenaltyRequest penaltyRequest) {
         Penalty penalty = new Penalty(penaltyRequest.getPrice());
         penaltyService.savePenalty(penalty);
-        return vocService.updatePenalty(id, penalty);
+        return new VOCDto(vocService.updatePenalty(id, penalty));
     }
 
     @PostMapping(value = "/voc/reparation/add/{id}")
-    public VOC addReparation(@PathVariable Long id, @RequestBody ReparationRequest reparationRequest) {
+    public VOCDto addReparation(@PathVariable Long id, @RequestBody ReparationRequest reparationRequest) {
         Reparation reparation = new Reparation(reparationRequest.getPrice());
         reparationService.saveReparation(reparation);
-        return vocService.updateReparation(id, reparation);
+        return new VOCDto(vocService.updateReparation(id, reparation));
     }
-
 
 
     @Data
     @AllArgsConstructor
-    public static class Result<T>{
+    public static class Result<T> {
         private int count;
         private T data;
 

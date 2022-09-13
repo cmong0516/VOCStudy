@@ -19,9 +19,10 @@ public class Deliveryc {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    // 운송사 이름
     @NotNull
     private String name;
-
+    // 운송사에 소속된 배송기사 List
     @OneToMany(mappedBy = "deliveryc")
     @JsonManagedReference
     private List<Delivery> deliveryList = new ArrayList<>();
