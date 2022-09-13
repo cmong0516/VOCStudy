@@ -81,3 +81,7 @@ VOCDto 에 Penalty , Reparation , Client, Deliver 를 Entity 로 담았더니
 No serializer found for class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor and no properties discovered to create BeanSerializer
 에러발생<br>
 Entity -> DTO 변환
+
+Client, Delivery, Deliveryc 해결
+
+Penalty , Reparation 
