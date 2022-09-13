@@ -6,7 +6,6 @@ import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
-import lombok.ToString;
 
 
 @Data
@@ -19,7 +18,6 @@ public class VOCDto {
     @NotNull
     private String reason;
     // 페널티 내용
-    @JsonManagedReference
     private Penalty penalty;
     // 이의제기 여부
     private boolean objection;
