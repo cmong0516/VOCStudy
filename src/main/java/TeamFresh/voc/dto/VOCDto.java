@@ -17,11 +17,11 @@ public class VOCDto {
     @NotNull
     private String reason;
     // 페널티 내용
-    private Penalty penalty;
+    private PenaltyDtoInVOC penaltyDtoInVOC;
     // 이의제기 여부
     private boolean objection;
     // 배상 정보
-    private Reparation reparation;
+    private ReparationDtoInVOC reparationDtoInVOC;
     // 고객 정보
     private ClientDto clientDto;
     // 배송기사 정보
@@ -33,8 +33,8 @@ public class VOCDto {
     public VOCDto(VOC voc) {
         this.negligence = voc.getNegligence();
         this.reason = voc.getReason();
-        this.penalty = voc.getPenalty();
-        this.reparation = voc.getReparation();
+        this.penaltyDtoInVOC = new PenaltyDtoInVOC(voc.getPenalty());
+        this.reparationDtoInVOC = new ReparationDtoInVOC(voc.getReparation());
         this.clientDto = new ClientDto(voc.getClient());
         this.objection = voc.isObjection();
         this.deliveryDto = new DeliveryDto(voc.getDelivery());
