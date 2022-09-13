@@ -91,14 +91,15 @@ public class VOCController {
     public VOCDto addPenalty(@PathVariable Long id, @RequestBody PenaltyRequest penaltyRequest) {
         Penalty penalty = new Penalty(penaltyRequest.getPrice());
         penaltyService.savePenalty(penalty);
-        return new VOCDto(vocService.updatePenalty(id, penalty));
+        log.error("=============VOCController==================");
+        return vocService.updatePenalty(id, penalty);
     }
 
     @PostMapping(value = "/voc/reparation/add/{id}")
     public VOCDto addReparation(@PathVariable Long id, @RequestBody ReparationRequest reparationRequest) {
         Reparation reparation = new Reparation(reparationRequest.getPrice());
         reparationService.saveReparation(reparation);
-        return new VOCDto(vocService.updateReparation(id, reparation));
+        return vocService.updateReparation(id, reparation);
     }
 
 

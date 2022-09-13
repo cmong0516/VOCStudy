@@ -8,6 +8,7 @@ class VocApplicationTests {
 
 	@Test
 	void contextLoads() {
+
 	}
 
 }

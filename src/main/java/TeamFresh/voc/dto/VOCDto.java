@@ -1,15 +1,14 @@
 package TeamFresh.voc.dto;
 
 import TeamFresh.voc.entity.*;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
+import lombok.*;
+
 
 
 @Data
 @AllArgsConstructor
+
 public class VOCDto {
     // 귀책댕사자
     @NotNull

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -17,7 +18,7 @@ public class Penalty extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     // 패널티가 발급된 VOC
-    @OneToOne(mappedBy = "penalty")
+    @OneToOne(mappedBy = "penalty",cascade = CascadeType.ALL)
     @JsonBackReference
     private VOC voc;
     // 운송기사의 패널티 확인 여부

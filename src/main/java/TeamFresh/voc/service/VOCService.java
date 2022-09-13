@@ -5,18 +5,18 @@ import TeamFresh.voc.entity.Penalty;
 import TeamFresh.voc.entity.Reparation;
 import TeamFresh.voc.entity.VOC;
 import TeamFresh.voc.repository.VOCRepository;
-import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
+@Slf4j
 public class VOCService {
 
     private final VOCRepository vocRepository;
@@ -28,19 +28,21 @@ public class VOCService {
     }
 
     @Transactional
-    public VOC updatePenalty(Long id,Penalty penalty) {
+    public VOCDto updatePenalty(Long id, Penalty penalty) {
+        log.error("=============VOCService==================");
         VOC findVOC = vocRepository.findById(id).get();
         penalty.changeDelivery(findVOC.getDelivery());
         findVOC.changePenalty(penalty);
-        return findVOC;
+        log.error(String.valueOf(findVOC.getPenalty().getPrice()));
+        return new VOCDto(findVOC);
     }
 
 
     @Transactional
-    public VOC updateReparation(Long id,Reparation reparation) {
+    public VOCDto updateReparation(Long id, Reparation reparation) {
         VOC findVOC = vocRepository.findById(id).get();
         findVOC.changeReparation(reparation);
-        return findVOC;
+        return new VOCDto(findVOC);
     }
 
     @Transactional

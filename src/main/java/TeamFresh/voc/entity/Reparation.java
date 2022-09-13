@@ -18,7 +18,7 @@ public class Reparation extends BaseEntity{
     // 배상 금액
     private int price;
     // 배상해야할 VOC 정보
-    @OneToOne(mappedBy = "reparation")
+    @OneToOne(mappedBy = "reparation",cascade = CascadeType.ALL)
     @JsonBackReference
     private VOC voc;
 

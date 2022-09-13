@@ -1,9 +1,7 @@
 package TeamFresh.voc.dto;
 
 import TeamFresh.voc.entity.Penalty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
