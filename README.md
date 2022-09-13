@@ -104,3 +104,8 @@ Client, Delivery, Deliveryc 해결
 
 Penalty , Reparation 
 -> PenaltyDtoInVOC , ReparationDtoInVOC 두개의 새로운 DTO 를 만들어서 해결.
+
+<h1>Todo</h1>
+1. spring.jackson.serialization.FAIL_ON_EMPTY_BEANS=false <br>
+2. QueryDsl 로 모든 조회 해보기 및 최적화 <br>
+3. 전체 코드 정리하기 <br>
