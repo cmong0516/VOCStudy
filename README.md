@@ -1,5 +1,5 @@
 # VOCStudy
-![voc](https://user-images.githubusercontent.com/74821906/189686547-29f2a492-5900-48ec-8043-ae4fa534436d.png)
+![ClassDiagram](https://user-images.githubusercontent.com/74821906/189953617-32141d0d-8089-4191-8877-aff246c06200.png)
 
 ![vocERD](https://user-images.githubusercontent.com/74821906/189692981-b92e953c-2ec9-4f7b-97f6-99c6c1344495.png)
 
