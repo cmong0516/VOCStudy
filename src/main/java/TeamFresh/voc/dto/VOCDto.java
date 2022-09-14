@@ -1,6 +1,7 @@
 package TeamFresh.voc.dto;
 
 import TeamFresh.voc.entity.*;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 import lombok.*;
 

@@ -53,8 +53,7 @@ public class VOCService {
     }
 
     public List<VOCDto> findVOCs() {
-        List<VOC> result = vocRepository.findAll();
-        return result.stream().map(VOCDto::new).collect(Collectors.toList());
+        return vocRepository.findAll().stream().map(VOCDto::new).collect(Collectors.toList());
     }
 
     public VOCDto findVOC(Long id) {

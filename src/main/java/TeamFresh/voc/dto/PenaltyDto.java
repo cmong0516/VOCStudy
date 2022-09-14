@@ -1,6 +1,7 @@
 package TeamFresh.voc.dto;
 
 import TeamFresh.voc.entity.Penalty;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 @Data

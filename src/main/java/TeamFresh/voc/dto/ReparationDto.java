@@ -1,6 +1,7 @@
 package TeamFresh.voc.dto;
 
 import TeamFresh.voc.entity.Reparation;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
