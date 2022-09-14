@@ -102,8 +102,13 @@ Entity -> DTO 변환
 
 Client, Delivery, Deliveryc 해결
 
-Penalty , Reparation 
--> PenaltyDtoInVOC , ReparationDtoInVOC 두개의 새로운 DTO 를 만들어서 해결.
+<h1>Error</h1>
+
+Penalty , Reparation <br>
+VOC 와 @OnetoOne 관계인 두 Entity 에 대해서 DTO 로 변환하려고 할때 NPE 발생 <br>
+VOC 등록시 Penalty 는 전부 Null , Reparation 은 일부 Null 이라서 생기는 문제같음.
+
+
 
 <h1>Todo</h1>
 1. spring.jackson.serialization.FAIL_ON_EMPTY_BEANS=false <br>
