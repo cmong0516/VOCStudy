@@ -5,8 +5,6 @@ import TeamFresh.voc.request.VOCRequest;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
-
 import javax.persistence.*;
 
 @Entity

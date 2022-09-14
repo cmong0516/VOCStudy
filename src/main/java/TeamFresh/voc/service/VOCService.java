@@ -4,6 +4,7 @@ import TeamFresh.voc.dto.VOCDto;
 import TeamFresh.voc.entity.Penalty;
 import TeamFresh.voc.entity.Reparation;
 import TeamFresh.voc.entity.VOC;
+import TeamFresh.voc.repository.QueryDslRepository;
 import TeamFresh.voc.repository.VOCRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +23,7 @@ import java.util.stream.Collectors;
 public class VOCService {
 
     private final VOCRepository vocRepository;
+    private final QueryDslRepository queryDslRepository;
 
     @Transactional
     public Long saveVOC(VOC voc) {
@@ -53,7 +55,9 @@ public class VOCService {
     }
 
     public List<VOCDto> findVOCs() {
-        return vocRepository.findAll().stream().map(VOCDto::new).collect(Collectors.toList());
+//        return vocRepository.findAll().stream().map(VOCDto::new).collect(Collectors.toList());
+        return queryDslRepository.findAllVOC();
+//                .stream().map(VOCDto::new).collect(Collectors.toList());
     }
 
     public VOCDto findVOC(Long id) {

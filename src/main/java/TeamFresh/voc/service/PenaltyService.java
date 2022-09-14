@@ -3,6 +3,7 @@ package TeamFresh.voc.service;
 import TeamFresh.voc.dto.PenaltyDto;
 import TeamFresh.voc.entity.Penalty;
 import TeamFresh.voc.repository.PenaltyRepository;
+import TeamFresh.voc.repository.QueryDslRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 public class PenaltyService {
 
     private final PenaltyRepository penaltyRepository;
+    private final QueryDslRepository queryDslRepository;
 
     @Transactional
     public Penalty savePenalty(Penalty penalty) {
@@ -23,7 +25,9 @@ public class PenaltyService {
     }
 
     public List<PenaltyDto> findAll() {
-        List<Penalty> all = penaltyRepository.findAll();
-        return all.stream().map(PenaltyDto::new).collect(Collectors.toList());
+//        List<Penalty> all = penaltyRepository.findAll();
+//        return all.stream().map(PenaltyDto::new).collect(Collectors.toList());
+
+        return queryDslRepository.findAllPenalty();
     }
 }

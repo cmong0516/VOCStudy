@@ -2,6 +2,7 @@ package TeamFresh.voc.dto;
 
 import TeamFresh.voc.entity.*;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.querydsl.core.annotations.QueryProjection;
 import com.sun.istack.NotNull;
 import lombok.*;
 
@@ -28,7 +29,6 @@ public class VOCDto {
     private DeliveryDto deliveryDto;
     // 운송사 정보
     private DeliverycDto deliverycDto;
-
 
     public VOCDto(VOC voc) {
         this.negligence = voc.getNegligence();
