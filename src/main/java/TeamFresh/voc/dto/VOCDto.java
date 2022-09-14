@@ -16,11 +16,11 @@ public class VOCDto {
     @NotNull
     private String reason;
     // 페널티 내용
-    private Penalty penalty;
+    private PenaltyDtoInVOC penaltyDtoInVOC;
     // 이의제기 여부
     private boolean objection;
     // 배상 정보
-    private Reparation reparation;
+    private ReparationDtoInVOC reparationDtoInVOC;
     // 고객 정보
     private ClientDto clientDto;
     // 배송기사 정보
@@ -32,12 +32,16 @@ public class VOCDto {
     public VOCDto(VOC voc) {
         this.negligence = voc.getNegligence();
         this.reason = voc.getReason();
-        this.penalty = voc.getPenalty();
-        this.reparation = voc.getReparation();
         this.clientDto = new ClientDto(voc.getClient());
         this.objection = voc.isObjection();
         this.deliveryDto = new DeliveryDto(voc.getDelivery());
         this.deliverycDto = new DeliverycDto(voc.getDelivery().getDeliveryc());
+        if (voc.getPenalty() != null) {
+            changePenalty(voc.getPenalty());
+        }
+        if (voc.getReparation() != null) {
+            chagneReparation(voc.getReparation());
+        }
     }
 
     @Getter
@@ -45,6 +49,14 @@ public class VOCDto {
     public static class UpdateDeliveryCheck {
         private Long id;
         private boolean deliveryCheck;
-
     }
+
+    public void changePenalty(Penalty penalty) {
+        this.penaltyDtoInVOC = new PenaltyDtoInVOC(penalty);
+    }
+
+    public void chagneReparation(Reparation reparation) {
+        this.reparationDtoInVOC = new ReparationDtoInVOC(reparation);
+    }
+
 }
