@@ -5,6 +5,7 @@ import TeamFresh.voc.request.VOCRequest;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
@@ -12,6 +13,8 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @AllArgsConstructor
+@ToString
+@RequiredArgsConstructor
 public class VOC extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,14 +26,14 @@ public class VOC extends BaseEntity{
     @NotNull
     private String reason;
     // 발급된 패널티
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "penalty_id")
     @JsonManagedReference
     private Penalty penalty;
     // 이의제기 여부
     private boolean objection;
     // 발급된 배상정보
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "reparation_id")
     @JsonManagedReference
     private Reparation reparation;
@@ -90,5 +93,4 @@ public class VOC extends BaseEntity{
         this.reparation = reparation;
         reparation.setVOC(this);
     }
-
 }

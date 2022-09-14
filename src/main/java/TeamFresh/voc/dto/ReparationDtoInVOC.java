@@ -12,4 +12,5 @@ public class ReparationDtoInVOC {
     public ReparationDtoInVOC(Reparation reparation) {
         this.price = reparation.getPrice();
     }
+
 }

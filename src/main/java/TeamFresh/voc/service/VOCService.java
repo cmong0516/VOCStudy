@@ -5,13 +5,14 @@ import TeamFresh.voc.entity.Penalty;
 import TeamFresh.voc.entity.Reparation;
 import TeamFresh.voc.entity.VOC;
 import TeamFresh.voc.repository.VOCRepository;
-import TeamFresh.voc.repository.VOCRepositoryCustomImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.bytebuddy.build.Plugin;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,7 +22,6 @@ import java.util.stream.Collectors;
 public class VOCService {
 
     private final VOCRepository vocRepository;
-    private final VOCRepositoryCustomImpl vocRepositoryCustom;
 
     @Transactional
     public Long saveVOC(VOC voc) {
@@ -53,12 +53,26 @@ public class VOCService {
     }
 
     public List<VOCDto> findVOCs() {
-//        return vocRepository.findAll().stream().map(VOCDto::new).collect(Collectors.toList());
-        return vocRepositoryCustom.findAllFetchJoin().stream().map(VOCDto::new).collect(Collectors.toList());
+        List<VOC> result = vocRepository.findAll();
+        return result.stream().map(VOCDto::new).collect(Collectors.toList());
     }
 
     public VOCDto findVOC(Long id) {
         VOC findVOC = vocRepository.findById(id).get();
         return new VOCDto(findVOC);
+    }
+
+    public Penalty penaltyNullCheck(VOC voc) {
+        if (voc.getPenalty() == null) {
+            return null;
+        }
+        return voc.getPenalty();
+    }
+
+    public Reparation reparationNullCheck(VOC voc) {
+        if (voc.getReparation() == null) {
+            return null;
+        }
+        return voc.getReparation();
     }
 }
