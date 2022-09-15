@@ -31,23 +31,25 @@ public class QueryDslTest {
     @Test
     // 9개.
     public void findVOC() {
-        List<VOC> fetch = queryFactory.select(vOC)
-                .from(vOC)
-                .fetch();
-
-        for (VOC voc : fetch) {
-            System.out.println("voc = " + voc);
-        }
+        VOC voc = queryFactory.selectFrom(vOC)
+                .leftJoin(vOC.penalty, QPenalty.penalty)
+                .leftJoin(vOC.delivery, QDelivery.delivery)
+                .leftJoin(vOC.reparation, QReparation.reparation)
+                .leftJoin(vOC.client, QClient.client)
+                .fetchJoin()
+                .where(vOC.id.eq(1L))
+                .fetchOne();
+        System.out.println("voc = " + voc);
     }
 
     @Test
     // 4개.
     public void findVOCFetchJoin() {
         List<VOC> result = queryFactory.selectFrom(vOC)
-                .leftJoin(vOC.client, QClient.client)
-                .leftJoin(vOC.delivery, QDelivery.delivery)
-                .leftJoin(vOC.penalty, QPenalty.penalty)
-                .leftJoin(vOC.reparation, QReparation.reparation)
+                .innerJoin(vOC.client, QClient.client)
+                .innerJoin(vOC.delivery, QDelivery.delivery)
+                .innerJoin(vOC.penalty, QPenalty.penalty)
+                .innerJoin(vOC.reparation, QReparation.reparation)
                 .fetchJoin()
                 .fetch();
 
@@ -80,10 +82,6 @@ public class QueryDslTest {
         List<VOC> fetch = queryFactory.selectFrom(vOC)
                 .where(vOC.objection.eq(true))
                 .fetch();
-
-        for (VOC voc : fetch) {
-            System.out.println("voc = " + voc);
-        }
     }
 
 }

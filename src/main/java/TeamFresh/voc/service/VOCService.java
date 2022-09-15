@@ -8,13 +8,10 @@ import TeamFresh.voc.repository.QueryDslRepository;
 import TeamFresh.voc.repository.VOCRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import net.bytebuddy.build.Plugin;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+
 
 @Service
 @Transactional(readOnly = true)
@@ -61,8 +58,9 @@ public class VOCService {
     }
 
     public VOCDto findVOC(Long id) {
-        VOC findVOC = vocRepository.findById(id).get();
-        return new VOCDto(findVOC);
+//        VOC findVOC = vocRepository.findById(id).get();
+//        return new VOCDto(findVOC);
+        return queryDslRepository.findVOC(id);
     }
 
     public Penalty penaltyNullCheck(VOC voc) {

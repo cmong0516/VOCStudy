@@ -41,4 +41,16 @@ public class QueryDslRepository {
         return result;
     }
 
+    public VOCDto findVOC(Long id) {
+        return queryFactory.select(Projections.constructor(VOCDto.class, vOC))
+                .from(vOC)
+                .leftJoin(vOC.penalty, QPenalty.penalty)
+                .leftJoin(vOC.delivery, QDelivery.delivery)
+                .leftJoin(vOC.reparation, QReparation.reparation)
+                .leftJoin(vOC.client, QClient.client)
+                .fetchJoin()
+                .where(vOC.id.eq(id))
+                .fetchOne();
+    }
+
 }
