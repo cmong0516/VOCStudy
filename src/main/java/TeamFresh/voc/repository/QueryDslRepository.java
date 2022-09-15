@@ -41,7 +41,7 @@ public class QueryDslRepository {
         return result;
     }
 
-    public VOCDto findVOC(Long id) {
+    public VOCDto findVOCDto(Long id) {
         return queryFactory.select(Projections.constructor(VOCDto.class, vOC))
                 .from(vOC)
                 .leftJoin(vOC.penalty, QPenalty.penalty)
@@ -50,6 +50,26 @@ public class QueryDslRepository {
                 .leftJoin(vOC.client, QClient.client)
                 .fetchJoin()
                 .where(vOC.id.eq(id))
+                .fetchOne();
+    }
+
+    public VOC findVOC(Long id) {
+        return queryFactory.select(vOC)
+                .from(vOC)
+                .leftJoin(vOC.penalty, QPenalty.penalty)
+                .leftJoin(vOC.delivery, QDelivery.delivery)
+                .leftJoin(vOC.reparation, QReparation.reparation)
+                .leftJoin(vOC.client, QClient.client)
+                .fetchJoin()
+                .where(vOC.id.eq(id))
+                .fetchOne();
+    }
+
+    public Delivery findDelivery(Long id) {
+        return queryFactory.selectFrom(QDelivery.delivery)
+                .leftJoin(QDelivery.delivery.deliveryc,QDeliveryc.deliveryc)
+                .fetchJoin()
+                .where(QDelivery.delivery.id.eq(id))
                 .fetchOne();
     }
 

@@ -7,6 +7,7 @@ import TeamFresh.voc.dto.VOCDto;
 import TeamFresh.voc.entity.*;
 import TeamFresh.voc.repository.ClientRepository;
 import TeamFresh.voc.repository.DeliveryRepository;
+import TeamFresh.voc.repository.QueryDslRepository;
 import TeamFresh.voc.repository.VOCRepository;
 import TeamFresh.voc.request.*;
 import TeamFresh.voc.service.PenaltyService;
@@ -31,12 +32,14 @@ public class VOCController {
     private final DeliveryRepository deliveryRepository;
     private final ClientRepository clientRepository;
     private final VOCRepository vocRepository;
+    private final QueryDslRepository queryDslRepository;
 
     @PostMapping("/voc/add")
     public Long save(@RequestBody @Valid VOCRequest vocRequest) {
 
         VOC voc = new VOC(vocRequest);
-        Delivery delivery = deliveryRepository.findById(vocRequest.getDeliveryId()).get();
+//        Delivery delivery = deliveryRepository.findById(vocRequest.getDeliveryId()).get();
+        Delivery delivery = queryDslRepository.findDelivery(vocRequest.getDeliveryId());
         voc.changeDelivery(delivery);
         Client client = clientRepository.findById(vocRequest.getClientId()).get();
         voc.changeClient(client);

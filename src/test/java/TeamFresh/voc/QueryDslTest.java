@@ -12,6 +12,7 @@ import javax.persistence.PersistenceContext;
 
 import java.util.List;
 
+import static TeamFresh.voc.entity.QDelivery.*;
 import static TeamFresh.voc.entity.QVOC.*;
 
 @SpringBootTest
@@ -33,7 +34,7 @@ public class QueryDslTest {
     public void findVOC() {
         VOC voc = queryFactory.selectFrom(vOC)
                 .leftJoin(vOC.penalty, QPenalty.penalty)
-                .leftJoin(vOC.delivery, QDelivery.delivery)
+                .leftJoin(vOC.delivery, delivery)
                 .leftJoin(vOC.reparation, QReparation.reparation)
                 .leftJoin(vOC.client, QClient.client)
                 .fetchJoin()
@@ -47,7 +48,7 @@ public class QueryDslTest {
     public void findVOCFetchJoin() {
         List<VOC> result = queryFactory.selectFrom(vOC)
                 .innerJoin(vOC.client, QClient.client)
-                .innerJoin(vOC.delivery, QDelivery.delivery)
+                .innerJoin(vOC.delivery, delivery)
                 .innerJoin(vOC.penalty, QPenalty.penalty)
                 .innerJoin(vOC.reparation, QReparation.reparation)
                 .fetchJoin()
@@ -84,4 +85,14 @@ public class QueryDslTest {
                 .fetch();
     }
 
+    @Test
+    public void findDelivery() {
+        Delivery delivery = queryFactory.selectFrom(QDelivery.delivery)
+                .leftJoin(QDelivery.delivery.deliveryc,QDeliveryc.deliveryc)
+                .fetchJoin()
+                .where(QDelivery.delivery.id.eq(1L))
+                .fetchOne();
+
+        System.out.println("delivery = " + delivery);
+    }
 }

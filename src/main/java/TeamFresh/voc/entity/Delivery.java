@@ -5,6 +5,7 @@ import com.sun.istack.NotNull;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -45,6 +46,15 @@ public class Delivery{
 
     public void changeDeliveryc(Deliveryc deliveryc) {
         this.deliveryc = deliveryc;
+    }
 
+    @Override
+    public String toString() {
+        return "Delivery{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", deliveryc=" + deliveryc +
+                '}';
     }
 }

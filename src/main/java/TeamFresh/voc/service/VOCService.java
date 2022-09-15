@@ -46,7 +46,8 @@ public class VOCService {
 
     @Transactional
     public VOC updateObjection(Long id, boolean objection) {
-        VOC findVOC = vocRepository.findById(id).get();
+//        VOC findVOC = vocRepository.findById(id).get();
+        VOC findVOC = queryDslRepository.findVOC(id);
         findVOC.changeObjection(objection);
         return findVOC;
     }
@@ -60,7 +61,7 @@ public class VOCService {
     public VOCDto findVOC(Long id) {
 //        VOC findVOC = vocRepository.findById(id).get();
 //        return new VOCDto(findVOC);
-        return queryDslRepository.findVOC(id);
+        return queryDslRepository.findVOCDto(id);
     }
 
     public Penalty penaltyNullCheck(VOC voc) {
