@@ -117,6 +117,5 @@ VOCDTO 생성자에서 if문으로 null 체크를 한후 changePenalty , changeR
 
 
 <h1>Todo</h1>
-1. spring.jackson.serialization.FAIL_ON_EMPTY_BEANS=false <br>
-2. QueryDsl 로 모든 조회 해보기 및 최적화 <br>
+2. QueryDsl 로 모든 조회 해보기 및 최적화 <br>            
 3. 전체 코드 정리하기 <br>
