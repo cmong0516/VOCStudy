@@ -112,7 +112,9 @@ VOC 등록시 Penalty 는 전부 Null , Reparation 은 일부 Null 이라서 생
 
 <h1>Error FIX</h1>
 
-VOCDTO 생성자에서 if문으로 null 체크를 한후 changePenalty , changeReparation 메서드로 해결
+VOCDTO 생성자에서 if문으로 null 체크를 한후 changePenalty , changeReparation 메서드로 해결 <br>
+
+<h1>PostMan 출력시 Dto로 나오던 필드 수정 </h1>
 
 
 
