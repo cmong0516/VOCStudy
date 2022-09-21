@@ -63,18 +63,4 @@ public class VOCService {
 //        return new VOCDto(findVOC);
         return queryDslRepository.findVOCDto(id);
     }
-
-    public Penalty penaltyNullCheck(VOC voc) {
-        if (voc.getPenalty() == null) {
-            return null;
-        }
-        return voc.getPenalty();
-    }
-
-    public Reparation reparationNullCheck(VOC voc) {
-        if (voc.getReparation() == null) {
-            return null;
-        }
-        return voc.getReparation();
-    }
 }

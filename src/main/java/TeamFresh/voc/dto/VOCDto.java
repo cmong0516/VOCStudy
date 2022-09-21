@@ -1,8 +1,6 @@
 package TeamFresh.voc.dto;
 
 import TeamFresh.voc.entity.*;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.querydsl.core.annotations.QueryProjection;
 import com.sun.istack.NotNull;
 import lombok.*;
 
@@ -18,25 +16,26 @@ public class VOCDto {
     @NotNull
     private String reason;
     // 페널티 내용
-    private PenaltyDtoInVOC penaltyDtoInVOC;
+    private PenaltyDtoInVOC penalty;
     // 이의제기 여부
     private boolean objection;
     // 배상 정보
-    private ReparationDtoInVOC reparationDtoInVOC;
+    private ReparationDtoInVOC reparation;
     // 고객 정보
-    private ClientDto clientDto;
+    private ClientDto client;
     // 배송기사 정보
-    private DeliveryDto deliveryDto;
+    private DeliveryDto delivery;
     // 운송사 정보
-    private DeliverycDto deliverycDto;
+    // 배송기사에 포함
+//    private DeliverycDto deliverycDto;
 
     public VOCDto(VOC voc) {
         this.negligence = voc.getNegligence();
         this.reason = voc.getReason();
-        this.clientDto = new ClientDto(voc.getClient());
+        this.client = new ClientDto(voc.getClient());
         this.objection = voc.isObjection();
-        this.deliveryDto = new DeliveryDto(voc.getDelivery());
-        this.deliverycDto = new DeliverycDto(voc.getDelivery().getDeliveryc());
+        this.delivery = new DeliveryDto(voc.getDelivery());
+//        this.deliverycDto = new DeliverycDto(voc.getDelivery().getDeliveryc());
         if (voc.getPenalty() != null) {
             changePenalty(voc.getPenalty());
         }
@@ -53,11 +52,11 @@ public class VOCDto {
     }
 
     public void changePenalty(Penalty penalty) {
-        this.penaltyDtoInVOC = new PenaltyDtoInVOC(penalty);
+        this.penalty = new PenaltyDtoInVOC(penalty);
     }
 
     public void chagneReparation(Reparation reparation) {
-        this.reparationDtoInVOC = new ReparationDtoInVOC(reparation);
+        this.reparation = new ReparationDtoInVOC(reparation);
     }
 
 }

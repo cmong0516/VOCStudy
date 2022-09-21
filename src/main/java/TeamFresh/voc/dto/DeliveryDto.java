@@ -11,11 +11,11 @@ import lombok.ToString;
 public class DeliveryDto {
     private int age;
     private String name;
-    private DeliverycDto deliverycDto;
+    private DeliverycDto deliveryc;
 
     public DeliveryDto(Delivery delivery) {
         this.age = delivery.getAge();
         this.name = delivery.getName();
-        this.deliverycDto = new DeliverycDto(delivery.getDeliveryc());
+        this.deliveryc = new DeliverycDto(delivery.getDeliveryc());
     }
 }
