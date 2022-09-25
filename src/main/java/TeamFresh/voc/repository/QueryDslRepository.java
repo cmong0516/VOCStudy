@@ -1,16 +1,21 @@
 package TeamFresh.voc.repository;
 
-import TeamFresh.voc.dto.PenaltyDto;
-import TeamFresh.voc.dto.VOCDto;
+import TeamFresh.voc.dto.*;
 import TeamFresh.voc.entity.*;
+import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.Projections;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
+import static TeamFresh.voc.entity.QClient.*;
+import static TeamFresh.voc.entity.QDelivery.*;
 import static TeamFresh.voc.entity.QPenalty.*;
+import static TeamFresh.voc.entity.QReparation.*;
 import static TeamFresh.voc.entity.QVOC.vOC;
 
 @Repository
@@ -22,10 +27,10 @@ public class QueryDslRepository {
     public List<VOCDto> findAllVOC() {
         List<VOCDto> result = queryFactory.select(Projections.constructor(VOCDto.class, vOC))
                 .from(vOC)
-                .leftJoin(vOC.client, QClient.client)
-                .leftJoin(vOC.delivery, QDelivery.delivery)
+                .leftJoin(vOC.client, client)
+                .leftJoin(vOC.delivery, delivery)
                 .leftJoin(vOC.penalty, penalty)
-                .leftJoin(vOC.reparation, QReparation.reparation)
+                .leftJoin(vOC.reparation, reparation)
                 .fetchJoin()
                 .fetch();
         return result;
@@ -45,9 +50,9 @@ public class QueryDslRepository {
         return queryFactory.select(Projections.constructor(VOCDto.class, vOC))
                 .from(vOC)
                 .leftJoin(vOC.penalty, QPenalty.penalty)
-                .leftJoin(vOC.delivery, QDelivery.delivery)
-                .leftJoin(vOC.reparation, QReparation.reparation)
-                .leftJoin(vOC.client, QClient.client)
+                .leftJoin(vOC.delivery, delivery)
+                .leftJoin(vOC.reparation, reparation)
+                .leftJoin(vOC.client, client)
                 .fetchJoin()
                 .where(vOC.id.eq(id))
                 .fetchOne();
@@ -57,20 +62,43 @@ public class QueryDslRepository {
         return queryFactory.select(vOC)
                 .from(vOC)
                 .leftJoin(vOC.penalty, QPenalty.penalty)
-                .leftJoin(vOC.delivery, QDelivery.delivery)
-                .leftJoin(vOC.reparation, QReparation.reparation)
-                .leftJoin(vOC.client, QClient.client)
+                .leftJoin(vOC.delivery, delivery)
+                .leftJoin(vOC.reparation, reparation)
+                .leftJoin(vOC.client, client)
                 .fetchJoin()
                 .where(vOC.id.eq(id))
                 .fetchOne();
     }
 
     public Delivery findDelivery(Long id) {
-        return queryFactory.selectFrom(QDelivery.delivery)
-                .leftJoin(QDelivery.delivery.deliveryc,QDeliveryc.deliveryc)
+        return queryFactory.selectFrom(delivery)
+                .leftJoin(delivery.deliveryc,QDeliveryc.deliveryc)
                 .fetchJoin()
-                .where(QDelivery.delivery.id.eq(id))
+                .where(delivery.id.eq(id))
                 .fetchOne();
+    }
+
+//    public List<VOCDto> search(VOCSearchCondition condition) {
+//        return queryFactory
+//                .select(new QVOCDto(
+//                        vOC
+//                        ))
+//                .from(vOC)
+//                .leftJoin(vOC.reparation, reparation)
+//                .leftJoin(vOC.penalty, penalty)
+//                .leftJoin(vOC.client, client)
+//                .leftJoin(vOC.delivery, delivery)
+//                .where(negligenceEq(condition.getNegligenceEnum()),
+//                        clientEq(condition.getClientId()),
+//                        deliveryEq(condition.getDeliveryId()),
+//                        deliverycEq(condition.getDeliverycId())
+//                        )
+//
+//
+//    }
+
+    private BooleanExpression negligenceEq(Enum<Negligence> negligenceEnum) {
+        return StringUtils.hasText(String.valueOf(negligenceEnum)) ? vOC.negligence.eq((Negligence) negligenceEnum) : null;
     }
 
 }

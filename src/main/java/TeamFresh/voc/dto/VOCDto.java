@@ -1,6 +1,7 @@
 package TeamFresh.voc.dto;
 
 import TeamFresh.voc.entity.*;
+import com.querydsl.core.annotations.QueryProjection;
 import com.sun.istack.NotNull;
 import lombok.*;
 
@@ -29,6 +30,7 @@ public class VOCDto {
     // 배송기사에 포함
 //    private DeliverycDto deliverycDto;
 
+    @QueryProjection
     public VOCDto(VOC voc) {
         this.negligence = voc.getNegligence();
         this.reason = voc.getReason();
