@@ -78,24 +78,21 @@ public class QueryDslRepository {
                 .fetchOne();
     }
 
-//    public List<VOCDto> search(VOCSearchCondition condition) {
-//        return queryFactory
-//                .select(new QVOCDto(
-//                        vOC
-//                        ))
-//                .from(vOC)
-//                .leftJoin(vOC.reparation, reparation)
-//                .leftJoin(vOC.penalty, penalty)
-//                .leftJoin(vOC.client, client)
-//                .leftJoin(vOC.delivery, delivery)
-//                .where(negligenceEq(condition.getNegligenceEnum()),
-//                        clientEq(condition.getClientId()),
-//                        deliveryEq(condition.getDeliveryId()),
-//                        deliverycEq(condition.getDeliverycId())
-//                        )
-//
-//
-//    }
+    public List<VOCDto> search(VOCSearchCondition condition) {
+        return queryFactory
+                .select(new QVOCDto(
+                        vOC
+                ))
+                .from(vOC)
+                .leftJoin(vOC.reparation, reparation)
+                .leftJoin(vOC.penalty, penalty)
+                .leftJoin(vOC.client, client)
+                .leftJoin(vOC.delivery, delivery)
+                .where(negligenceEq(condition.getNegligenceEnum())
+                ).fetch();
+
+
+    }
 
     private BooleanExpression negligenceEq(Enum<Negligence> negligenceEnum) {
         return StringUtils.hasText(String.valueOf(negligenceEnum)) ? vOC.negligence.eq((Negligence) negligenceEnum) : null;
