@@ -26,7 +26,9 @@ public class Delivery{
     @NotNull
     private int age;
     // 배송기사 소속 운송사
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    // cascadeAll 을 적용하면 의도와 다르게 동작할 가능성이 있다.
+//    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "deliveryc_id")
     @JsonBackReference
     private Deliveryc deliveryc;
