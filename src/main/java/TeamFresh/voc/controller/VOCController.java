@@ -57,14 +57,9 @@ public class VOCController {
 
         VOC voc = vocRepository.findById(id).get();
         voc.getPenalty().changeDeliveryPenaltyCheck(true);
-        if (deliveryCheckRequest.isObjection()) {
-            voc.changeObjection(deliveryCheckRequest.isObjection());
-            vocService.saveVOC(voc);
-        }
-        if (!deliveryCheckRequest.isObjection()) {
-            voc.changeObjection(deliveryCheckRequest.isObjection());
-            vocService.saveVOC(voc);
-        }
+        voc.changeObjection(deliveryCheckRequest.isObjection());
+        vocService.saveVOC(voc);
+
         return new VOCDto(voc);
     }
 
