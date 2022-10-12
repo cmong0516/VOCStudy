@@ -4,9 +4,11 @@
 <img width="620" alt="스크린샷 2022-10-09 오후 4 38 35" src="https://user-images.githubusercontent.com/74821906/195278573-63a371ac-7d6b-4067-85f2-123b39ae7569.png">
 
 <h1>클래스 다이어그램</h1>
+
 ![ClassDiagram](https://user-images.githubusercontent.com/74821906/190338793-ffdf7582-2e07-47bd-a393-20d8ee6a8023.png)
 
 <h1>ERD</h1>
+
 ![vocERD](https://user-images.githubusercontent.com/74821906/189692981-b92e953c-2ec9-4f7b-97f6-99c6c1344495.png)
 
 <h1>Init DB</h1>
