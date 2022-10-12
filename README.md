@@ -2,8 +2,6 @@
 
 <img width="620" alt="스크린샷 2022-10-09 오후 4 38 35" src="https://user-images.githubusercontent.com/74821906/195278573-63a371ac-7d6b-4067-85f2-123b39ae7569.png">
 
-
-
 ![ClassDiagram](https://user-images.githubusercontent.com/74821906/190338793-ffdf7582-2e07-47bd-a393-20d8ee6a8023.png)
 
 
