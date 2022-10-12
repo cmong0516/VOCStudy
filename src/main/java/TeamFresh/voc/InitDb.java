@@ -42,9 +42,10 @@ public class InitDb {
             Deliveryc deliveryc3 = new Deliveryc("Hyundae");
 //            cascade = CascadeType.ALL 로 Delivery 가 저장될때 함께 저장.
 //            delivery 가 없는 deliveryc3 는 저장되지 않음.
-//            em.persist(deliveryc1);
-//            em.persist(deliveryc2);
-//            em.persist(deliveryc3);
+            em.persist(deliveryc1);
+            em.persist(deliveryc2);
+            em.persist(deliveryc3);
+            // cascadeAll 사용시 의도치 않게 동작할 수가 있어서 제외했음.
 
 
             Delivery delivery1 = new Delivery("Sam", 30);
